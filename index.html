@@ -12,9 +12,12 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Orbitron', sans-serif;
-      background-color: black;
+      background-color: #0f0f0f;
       color: #00ff00;
       overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     .taskbar {
@@ -26,6 +29,7 @@
       justify-content: space-between;
       padding: 10px;
       color: white;
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
     }
 
     .clock {
@@ -35,52 +39,57 @@
 
     .start-btn {
       cursor: pointer;
-      padding: 5px 10px;
-      border: 1px solid #00ff00;
-      background-color: #004d00;
+      padding: 10px 20px;
+      border: 2px solid #00ff00;
+      background-color: transparent;
       color: white;
-      transition: all 0.3s ease;
+      text-transform: uppercase;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      transition: all 0.4s ease;
     }
 
     .start-btn:hover {
       background-color: #00ff00;
       color: black;
+      box-shadow: 0 0 10px #00ff00;
     }
 
     .app-ui {
       display: none;
       position: fixed;
       top: 10%;
-      left: 20%;
-      width: 60%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
       height: 70%;
       background-color: black;
       border: 1px solid #00ff00;
-      box-shadow: 0 0 20px #00ff00;
+      box-shadow: 0 0 30px #00ff00;
       padding: 20px;
-      animation: fadeIn 0.5s ease;
       overflow: auto;
+      animation: fadeIn 0.7s ease-in-out;
     }
 
     .app-ui h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 3px;
     }
 
     .app-ui p {
-      line-height: 1.6;
-    }
-
-    .app-ui .less-important {
-      font-size: 0.85rem;
-      opacity: 0.8;
+      line-height: 1.8;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
     }
 
     .app-container {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      padding: 20px;
+      gap: 30px;
+      flex-wrap: wrap;
     }
 
     .app {
@@ -94,30 +103,41 @@
       text-align: center;
       color: #00ff00;
       background: rgba(0, 255, 0, 0.1);
-      box-shadow: 0 0 10px #00ff00;
+      box-shadow: 0 0 15px #00ff00;
+      transition: all 0.3s ease;
       animation: fadeIn 1s ease;
     }
 
-    .quote {
-      text-align: center;
-      font-style: italic;
-      margin-top: 20px;
+    .app:hover {
+      background-color: rgba(0, 255, 0, 0.3);
+      box-shadow: 0 0 25px #00ff00;
     }
 
     .glitch {
       color: #ff00ff;
-      font-size: 2rem;
+      font-size: 2.5rem;
       font-weight: bold;
-      animation: glitch 1s infinite linear;
+      text-transform: uppercase;
+      animation: glitch-animation 1s infinite linear;
+      letter-spacing: 3px;
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
-    @keyframes glitch {
-      0% { text-shadow: 1px 1px 5px #ff00ff, 0 0 25px #ff00ff, 0 0 50px #ff00ff; }
-      20% { text-shadow: -1px -1px 5px #ff00ff, 0 0 25px #ff00ff, 0 0 50px #ff00ff; }
-      40% { text-shadow: 1px -1px 5px #ff00ff, 0 0 25px #ff00ff, 0 0 50px #ff00ff; }
-      60% { text-shadow: -1px 1px 5px #ff00ff, 0 0 25px #ff00ff, 0 0 50px #ff00ff; }
-      80% { text-shadow: 1px 1px 5px #ff00ff, 0 0 25px #ff00ff, 0 0 50px #ff00ff; }
-      100% { text-shadow: -1px -1px 5px #ff00ff, 0 0 25px #ff00ff, 0 0 50px #ff00ff; }
+    @keyframes glitch-animation {
+      0% { text-shadow: 2px 2px 10px rgba(255, 0, 255, 1), 0 0 25px rgba(255, 0, 255, 0.8); }
+      25% { text-shadow: -2px -2px 15px rgba(255, 0, 255, 1), 0 0 25px rgba(255, 0, 255, 0.8); }
+      50% { text-shadow: 2px 2px 20px rgba(255, 0, 255, 1), 0 0 25px rgba(255, 0, 255, 0.8); }
+      75% { text-shadow: -2px -2px 25px rgba(255, 0, 255, 1), 0 0 25px rgba(255, 0, 255, 0.8); }
+      100% { text-shadow: 2px 2px 30px rgba(255, 0, 255, 1), 0 0 25px rgba(255, 0, 255, 0.8); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
@@ -127,7 +147,9 @@
     <div class="clock" id="clock"></div>
   </div>
 
-  <div id="app-ui" class="app-ui animate__animated animate__fadeIn">
+  <div id="glitch-output" class="glitch">100010000</div>
+
+  <div id="app-ui" class="app-ui">
     <h1>Welcome to NesunoOh's Portfolio</h1>
     <p>
       I have advanced skills in Problem Solving, Digital Content Creation, Information and Data Literacy, Communication, and Collaboration.
@@ -159,8 +181,6 @@
     <div class="quote">
       "That brain of mine is something more than merely mortal, as time will show." - Ada Lovelace
     </div>
-
-    <div id="glitch-output" class="glitch"></div>
   </div>
 
   <script>
@@ -179,10 +199,11 @@
       clickCount++;
 
       if (clickCount > 2) {
-        glitchOutput.textContent = "100010000";
         glitchOutput.style.display = "block";
+        app.style.display = "none";
       } else {
         app.style.display = 'block';
+        glitchOutput.style.display = "none";
       }
     }
 
