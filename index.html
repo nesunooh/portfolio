@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hacker Portfolio - NesunoOh</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+      background-color: black;
+      color: #00ff00;
+      overflow: hidden;
+    }
+
+    .taskbar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #004d00;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      color: white;
+    }
+
+    .clock {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .start-btn {
+      cursor: pointer;
+      padding: 5px 10px;
+      border: 1px solid #00ff00;
+      background-color: #004d00;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .start-btn:hover {
+      background-color: #00ff00;
+      color: black;
+    }
+
+    .app-ui {
+      display: none;
+      position: fixed;
+      top: 10%;
+      left: 20%;
+      width: 60%;
+      height: 70%;
+      background-color: black;
+      border: 1px solid #00ff00;
+      box-shadow: 0 0 20px #00ff00;
+      padding: 20px;
+      animation: fadeIn 0.5s ease;
+      overflow: auto;
+    }
+
+    .app-ui h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .app-ui p {
+      line-height: 1.6;
+    }
+
+    .app-ui .less-important {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    .app-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .app {
+      width: 120px;
+      height: 120px;
+      border: 1px solid #00ff00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      text-align: center;
+      color: #00ff00;
+      background: rgba(0, 255, 0, 0.1);
+      box-shadow: 0 0 10px #00ff00;
+      animation: fadeIn 1s ease;
+    }
+
+    .quote {
+      text-align: center;
+      font-style: italic;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="taskbar">
+    <div class="start-btn" onclick="openApp()">Start</div>
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <div id="app-ui" class="app-ui animate__animated animate__fadeIn">
+    <h1>Welcome to NesunoOh's Portfolio</h1>
+    <p>
+      I have advanced skills in Problem Solving, Digital Content Creation, Information and Data Literacy, Communication, and Collaboration.
+    </p>
+    <p>
+      Currently, I am studying computer science and further enhancing my expertise.
+    </p>
+    <p>
+      I utilize various communication platforms such as Telegram and Skype. For professional emails, I use a separate secure communication system to prevent interference.
+    </p>
+    <p>
+      From 2021 to 2023, I worked in an intelligence role, gaining valuable experience in security operations and advanced computing.
+    </p>
+
+    <div class="app-container">
+      <div class="app">C++<br>70%</div>
+      <div class="app">JavaScript<br>70%</div>
+      <div class="app">Java<br>100%</div>
+      <div class="app">HTML<br>100%</div>
+      <div class="app">Others<br>50%</div>
+    </div>
+
+    <p class="less-important">
+      Additionally, I have developed Minecraft plugins and custom clients like EmperorClient.
+    </p>
+    <p class="less-important">
+      I also have been a staff member on numerous Minecraft servers (names withheld for creator privacy).
+    </p>
+    <div class="quote">
+      "That brain of mine is something more than merely mortal, as time will show." - Ada Lovelace
+    </div>
+  </div>
+
+  <script>
+    function updateClock() {
+      const clock = document.getElementById('clock');
+      const now = new Date();
+      const time = now.toLocaleTimeString('en-US', { hour12: false });
+      clock.textContent = time;
+    }
+
+    function openApp() {
+      const app = document.getElementById('app-ui');
+      app.style.display = 'block';
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>
