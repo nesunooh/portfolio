@@ -103,6 +103,22 @@
       font-style: italic;
       margin-top: 20px;
     }
+
+    .glitch {
+      color: #ff00ff;
+      font-size: 2rem;
+      font-weight: bold;
+      animation: glitch 1s infinite linear;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 1px 1px 5px #ff00ff, 0 0 25px #ff00ff, 0 0 50px #ff00ff; }
+      20% { text-shadow: -1px -1px 5px #ff00ff, 0 0 25px #ff00ff, 0 0 50px #ff00ff; }
+      40% { text-shadow: 1px -1px 5px #ff00ff, 0 0 25px #ff00ff, 0 0 50px #ff00ff; }
+      60% { text-shadow: -1px 1px 5px #ff00ff, 0 0 25px #ff00ff, 0 0 50px #ff00ff; }
+      80% { text-shadow: 1px 1px 5px #ff00ff, 0 0 25px #ff00ff, 0 0 50px #ff00ff; }
+      100% { text-shadow: -1px -1px 5px #ff00ff, 0 0 25px #ff00ff, 0 0 50px #ff00ff; }
+    }
   </style>
 </head>
 <body>
@@ -143,9 +159,13 @@
     <div class="quote">
       "That brain of mine is something more than merely mortal, as time will show." - Ada Lovelace
     </div>
+
+    <div id="glitch-output" class="glitch"></div>
   </div>
 
   <script>
+    let clickCount = 0;
+
     function updateClock() {
       const clock = document.getElementById('clock');
       const now = new Date();
@@ -155,7 +175,15 @@
 
     function openApp() {
       const app = document.getElementById('app-ui');
-      app.style.display = 'block';
+      const glitchOutput = document.getElementById('glitch-output');
+      clickCount++;
+
+      if (clickCount > 2) {
+        glitchOutput.textContent = "100010000";
+        glitchOutput.style.display = "block";
+      } else {
+        app.style.display = 'block';
+      }
     }
 
     setInterval(updateClock, 1000);
